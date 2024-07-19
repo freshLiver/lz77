@@ -1,0 +1,14 @@
+# ignore most files
+*
+
+# except code related files
+!*.c
+!*.h
+!Makefile
+!compile_flags.txt
+
+# and docs
+!README.md
+
+# and self
+!.gitignore
