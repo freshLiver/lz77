@@ -29,11 +29,11 @@ uint32_t encode(const uint8_t *in, uint32_t szIn, uint8_t *out, uint8_t wid) {
 
     // check search buffer
     for (uint16_t dm = 1, lm; (dm < maxDistMatch) && (dm <= ofsIn); ++dm) {
-      uint32_t ofsInTmp = ofsIn;
-      uint32_t ofsBegin = ofsIn - dm;
+      uint32_t ofsInNew = ofsIn;
+      uint32_t ofsMatch = ofsIn - dm;
 
       // check match length
-      for (lm = 0; ofsInTmp < szIn && in[ofsInTmp++] == in[ofsBegin++]; ++lm) {
+      for (lm = 0; ofsInNew < szIn && in[ofsInNew++] == in[ofsMatch++]; ++lm) {
         if (lm == maxLenMatch)
           break;
       }
@@ -70,28 +70,27 @@ uint32_t encode(const uint8_t *in, uint32_t szIn, uint8_t *out, uint8_t wid) {
 
 uint32_t decode(const uint8_t *in, uint8_t *out) {
   uint8_t wid;
-  uint16_t dist_len, len, dist, pointer_length_mask;
-  uint32_t pos, idxInDat, pointer_offset, szOut;
+  uint16_t dist_len, lenMatch, distMatch, dist_len_mask;
+  uint32_t ofsIn, ofsOut, ofsMatch, szOut;
 
   szOut = *((uint32_t *)in);
   wid = *(in + 4);
-  pos = 5;
+  ofsIn = 5;
 
-  pointer_length_mask = (1 << wid) - 1;
+  dist_len_mask = (1 << wid) - 1;
 
-  for (idxInDat = 0; idxInDat < szOut; ++idxInDat) {
-    uint8_t *in2 = (uint8_t *)&dist_len;
-    *in2 = *(in + pos);
-    *(in2 + 1) = *(in + pos + 1);
+  for (ofsOut = 0; ofsOut < szOut; ++ofsOut) {
+    *((uint8_t *)&dist_len) = *(in + ofsIn);
+    *((uint8_t *)&dist_len + 1) = *(in + ofsIn + 1);
 
-    pos += 2;
-    dist = dist_len >> wid;
-    len = dist ? ((dist_len & pointer_length_mask) + 1) : 0;
-    if (dist)
-      for (pointer_offset = idxInDat - dist; len > 0; --len)
-        out[idxInDat++] = out[pointer_offset++];
-    *(out + idxInDat) = *(in + pos++);
+    ofsIn += 2;
+    distMatch = dist_len >> wid;
+    lenMatch = distMatch ? ((dist_len & dist_len_mask) + 1) : 0;
+    if (distMatch)
+      for (ofsMatch = ofsOut - distMatch; lenMatch > 0; --lenMatch)
+        out[ofsOut++] = out[ofsMatch++];
+    *(out + ofsOut) = *(in + ofsIn++);
   }
 
-  return idxInDat;
+  return ofsOut;
 }
