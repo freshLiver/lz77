@@ -13,488 +13,488 @@ The original code is taken from [andyherbert/lz1](https://github.com/andyherbert
 ## Example
 
 ```shell
-$ make -B TEST_FILE=/dev/zero
-clang -std=c99 -g -O3 -Wall -Wextra -Werror -o lz.o -c lz.c
-clang -std=c99 -g -O3 -Wall -Wextra -Werror -o test.o -c test.c
+$ make -B TEST_FILE=/dev/zero                                                           master [86244c1] modified
+clang -std=c11 -g -O3 -Wall -Wextra -Werror -o lz.o -c lz.c
+clang -std=c11 -g -O3 -Wall -Wextra -Werror -o test.o -c test.c
 clang -o main lz.o test.o -fsanitize=undefined,leak,address,integer,implicit-conversion
-Compressing 2 bytes... (input file size: 0)
-        [01]: Compressed size 11 bytes
-        [02]: Compressed size 11 bytes
-        [03]: Compressed size 11 bytes
-        [04]: Compressed size 11 bytes
-        [05]: Compressed size 11 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 4 bytes... (input file size: 0)
-        [01]: Compressed size 11 bytes
-        [02]: Compressed size 11 bytes
-        [03]: Compressed size 11 bytes
-        [04]: Compressed size 11 bytes
-        [05]: Compressed size 11 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 8 bytes... (input file size: 0)
-        [01]: Compressed size 17 bytes
-        [02]: Compressed size 14 bytes
-        [03]: Compressed size 11 bytes
-        [04]: Compressed size 11 bytes
-        [05]: Compressed size 11 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 16 bytes... (input file size: 0)
-        [01]: Compressed size 23 bytes
-        [02]: Compressed size 17 bytes
-        [03]: Compressed size 14 bytes
-        [04]: Compressed size 11 bytes
-        [05]: Compressed size 11 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 32 bytes... (input file size: 0)
-        [01]: Compressed size 41 bytes
-        [02]: Compressed size 29 bytes
-        [03]: Compressed size 20 bytes
-        [04]: Compressed size 14 bytes
-        [05]: Compressed size 11 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 64 bytes... (input file size: 0)
-        [01]: Compressed size 71 bytes
-        [02]: Compressed size 47 bytes
-        [03]: Compressed size 29 bytes
-        [04]: Compressed size 20 bytes
-        [05]: Compressed size 14 bytes
-        [06]: Compressed size 11 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 128 bytes... (input file size: 0)
-        [01]: Compressed size 137 bytes
-        [02]: Compressed size 86 bytes
-        [03]: Compressed size 53 bytes
-        [04]: Compressed size 32 bytes
-        [05]: Compressed size 20 bytes
-        [06]: Compressed size 14 bytes
-        [07]: Compressed size 11 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 256 bytes... (input file size: 0)
-        [01]: Compressed size 263 bytes
-        [02]: Compressed size 161 bytes
-        [03]: Compressed size 95 bytes
-        [04]: Compressed size 53 bytes
-        [05]: Compressed size 32 bytes
-        [06]: Compressed size 20 bytes
-        [07]: Compressed size 14 bytes
-        [08]: Compressed size 11 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 512 bytes... (input file size: 0)
-        [01]: Compressed size 521 bytes
-        [02]: Compressed size 317 bytes
-        [03]: Compressed size 179 bytes
-        [04]: Compressed size 101 bytes
-        [05]: Compressed size 56 bytes
-        [06]: Compressed size 32 bytes
-        [07]: Compressed size 20 bytes
-        [08]: Compressed size 14 bytes
-        [09]: Compressed size 11 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 1024 bytes... (input file size: 0)
-        [01]: Compressed size 1031 bytes
-        [02]: Compressed size 623 bytes
-        [03]: Compressed size 350 bytes
-        [04]: Compressed size 191 bytes
-        [05]: Compressed size 101 bytes
-        [06]: Compressed size 56 bytes
-        [07]: Compressed size 32 bytes
-        [08]: Compressed size 20 bytes
-        [09]: Compressed size 14 bytes
-        [10]: Compressed size 11 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 2048 bytes... (input file size: 0)
-        [01]: Compressed size 2057 bytes
-        [02]: Compressed size 1238 bytes
-        [03]: Compressed size 692 bytes
-        [04]: Compressed size 371 bytes
-        [05]: Compressed size 197 bytes
-        [06]: Compressed size 104 bytes
-        [07]: Compressed size 56 bytes
-        [08]: Compressed size 32 bytes
-        [09]: Compressed size 20 bytes
-        [10]: Compressed size 14 bytes
-        [11]: Compressed size 11 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 4096 bytes... (input file size: 0)
-        [01]: Compressed size 4103 bytes
-        [02]: Compressed size 2465 bytes
-        [03]: Compressed size 1373 bytes
-        [04]: Compressed size 731 bytes
-        [05]: Compressed size 383 bytes
-        [06]: Compressed size 197 bytes
-        [07]: Compressed size 104 bytes
-        [08]: Compressed size 56 bytes
-        [09]: Compressed size 32 bytes
-        [10]: Compressed size 20 bytes
-        [11]: Compressed size 14 bytes
-        [12]: Compressed size 11 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 8192 bytes... (input file size: 0)
-        [01]: Compressed size 8201 bytes
-        [02]: Compressed size 4925 bytes
-        [03]: Compressed size 2741 bytes
-        [04]: Compressed size 1454 bytes
-        [05]: Compressed size 755 bytes
-        [06]: Compressed size 389 bytes
-        [07]: Compressed size 200 bytes
-        [08]: Compressed size 104 bytes
-        [09]: Compressed size 56 bytes
-        [10]: Compressed size 32 bytes
-        [11]: Compressed size 20 bytes
-        [12]: Compressed size 14 bytes
-        [13]: Compressed size 11 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 16384 bytes... (input file size: 0)
-        [01]: Compressed size 16391 bytes
-        [02]: Compressed size 9839 bytes
-        [03]: Compressed size 5471 bytes
-        [04]: Compressed size 2900 bytes
-        [05]: Compressed size 1499 bytes
-        [06]: Compressed size 767 bytes
-        [07]: Compressed size 389 bytes
-        [08]: Compressed size 200 bytes
-        [09]: Compressed size 104 bytes
-        [10]: Compressed size 56 bytes
-        [11]: Compressed size 32 bytes
-        [12]: Compressed size 20 bytes
-        [13]: Compressed size 14 bytes
-        [14]: Compressed size 11 bytes
-        [15]: Compressed size 11 bytes
-Compressing 32768 bytes... (input file size: 0)
-        [01]: Compressed size 32777 bytes
-        [02]: Compressed size 19670 bytes
-        [03]: Compressed size 10931 bytes
-        [04]: Compressed size 5792 bytes
-        [05]: Compressed size 2987 bytes
-        [06]: Compressed size 1523 bytes
-        [07]: Compressed size 773 bytes
-        [08]: Compressed size 392 bytes
-        [09]: Compressed size 200 bytes
-        [10]: Compressed size 104 bytes
-        [11]: Compressed size 56 bytes
-        [12]: Compressed size 32 bytes
-        [13]: Compressed size 20 bytes
-        [14]: Compressed size 14 bytes
-        [15]: Compressed size 11 bytes
-Compressing 65536 bytes... (input file size: 0)
-        [01]: Compressed size 65543 bytes
-        [02]: Compressed size 39329 bytes
-        [03]: Compressed size 21854 bytes
-        [04]: Compressed size 11573 bytes
-        [05]: Compressed size 5966 bytes
-        [06]: Compressed size 3035 bytes
-        [07]: Compressed size 1535 bytes
-        [08]: Compressed size 773 bytes
-        [09]: Compressed size 392 bytes
-        [10]: Compressed size 200 bytes
-        [11]: Compressed size 104 bytes
-        [12]: Compressed size 56 bytes
-        [13]: Compressed size 32 bytes
-        [14]: Compressed size 20 bytes
-        [15]: Compressed size 14 bytes
-Compressing 131072 bytes... (input file size: 0)
-        [01]: Compressed size 131081 bytes
-        [02]: Compressed size 78653 bytes
-        [03]: Compressed size 43700 bytes
-        [04]: Compressed size 23141 bytes
-        [05]: Compressed size 11924 bytes
-        [06]: Compressed size 6059 bytes
-        [07]: Compressed size 3059 bytes
-        [08]: Compressed size 1541 bytes
-        [09]: Compressed size 776 bytes
-        [10]: Compressed size 392 bytes
-        [11]: Compressed size 200 bytes
-        [12]: Compressed size 104 bytes
-        [13]: Compressed size 56 bytes
-        [14]: Compressed size 32 bytes
-        [15]: Compressed size 20 bytes
-Compressing 262144 bytes... (input file size: 0)
-        [01]: Compressed size 262151 bytes
-        [02]: Compressed size 157295 bytes
-        [03]: Compressed size 87389 bytes
-        [04]: Compressed size 46271 bytes
-        [05]: Compressed size 23840 bytes
-        [06]: Compressed size 12107 bytes
-        [07]: Compressed size 6107 bytes
-        [08]: Compressed size 3071 bytes
-        [09]: Compressed size 1541 bytes
-        [10]: Compressed size 776 bytes
-        [11]: Compressed size 392 bytes
-        [12]: Compressed size 200 bytes
-        [13]: Compressed size 104 bytes
-        [14]: Compressed size 56 bytes
-        [15]: Compressed size 32 bytes
-Compressing 524288 bytes... (input file size: 0)
-        [01]: Compressed size 524297 bytes
-        [02]: Compressed size 314582 bytes
-        [03]: Compressed size 174773 bytes
-        [04]: Compressed size 92531 bytes
-        [05]: Compressed size 47672 bytes
-        [06]: Compressed size 24206 bytes
-        [07]: Compressed size 12203 bytes
-        [08]: Compressed size 6131 bytes
-        [09]: Compressed size 3077 bytes
-        [10]: Compressed size 1544 bytes
-        [11]: Compressed size 776 bytes
-        [12]: Compressed size 392 bytes
-        [13]: Compressed size 200 bytes
-        [14]: Compressed size 104 bytes
-        [15]: Compressed size 56 bytes
-Compressing 1048576 bytes... (input file size: 0)
-        [01]: Compressed size 1048583 bytes
-        [02]: Compressed size 629153 bytes
-        [03]: Compressed size 349535 bytes
-        [04]: Compressed size 185051 bytes
-        [05]: Compressed size 95333 bytes
-        [06]: Compressed size 48404 bytes
-        [07]: Compressed size 24395 bytes
-        [08]: Compressed size 12251 bytes
-        [09]: Compressed size 6143 bytes
-        [10]: Compressed size 3077 bytes
-        [11]: Compressed size 1544 bytes
-        [12]: Compressed size 776 bytes
-        [13]: Compressed size 392 bytes
-        [14]: Compressed size 200 bytes
-        [15]: Compressed size 104 bytes
-Compressing 2097152 bytes... (input file size: 0)
-        [01]: Compressed size 2097161 bytes
-        [02]: Compressed size 1258301 bytes
-        [03]: Compressed size 699059 bytes
-        [04]: Compressed size 370094 bytes
-        [05]: Compressed size 190661 bytes
-        [06]: Compressed size 96800 bytes
-        [07]: Compressed size 48779 bytes
-        [08]: Compressed size 24491 bytes
-        [09]: Compressed size 12275 bytes
-        [10]: Compressed size 6149 bytes
-        [11]: Compressed size 3080 bytes
-        [12]: Compressed size 1544 bytes
-        [13]: Compressed size 776 bytes
-        [14]: Compressed size 392 bytes
-        [15]: Compressed size 200 bytes
-Compressing 4194304 bytes... (input file size: 0)
-        [01]: Compressed size 4194311 bytes
-        [02]: Compressed size 2516591 bytes
-        [03]: Compressed size 1398110 bytes
-        [04]: Compressed size 740180 bytes
-        [05]: Compressed size 381311 bytes
-        [06]: Compressed size 193592 bytes
-        [07]: Compressed size 97550 bytes
-        [08]: Compressed size 48971 bytes
-        [09]: Compressed size 24539 bytes
-        [10]: Compressed size 12287 bytes
-        [11]: Compressed size 6149 bytes
-        [12]: Compressed size 3080 bytes
-        [13]: Compressed size 1544 bytes
-        [14]: Compressed size 776 bytes
-        [15]: Compressed size 392 bytes
-Compressing 8388608 bytes... (input file size: 0)
-        [01]: Compressed size 8388617 bytes
-        [02]: Compressed size 5033174 bytes
-        [03]: Compressed size 2796212 bytes
-        [04]: Compressed size 1480352 bytes
-        [05]: Compressed size 762611 bytes
-        [06]: Compressed size 387176 bytes
-        [07]: Compressed size 195092 bytes
-        [08]: Compressed size 97931 bytes
-        [09]: Compressed size 49067 bytes
-        [10]: Compressed size 24563 bytes
-        [11]: Compressed size 12293 bytes
-        [12]: Compressed size 6152 bytes
-        [13]: Compressed size 3080 bytes
-        [14]: Compressed size 1544 bytes
-        [15]: Compressed size 776 bytes
-Compressing 16777216 bytes... (input file size: 0)
-        [01]: Compressed size 16777223 bytes
-        [02]: Compressed size 10066337 bytes
-        [03]: Compressed size 5592413 bytes
-        [04]: Compressed size 2960693 bytes
-        [05]: Compressed size 1525211 bytes
-        [06]: Compressed size 774341 bytes
-        [07]: Compressed size 390176 bytes
-        [08]: Compressed size 195851 bytes
-        [09]: Compressed size 98123 bytes
-        [10]: Compressed size 49115 bytes
-        [11]: Compressed size 24575 bytes
-        [12]: Compressed size 12293 bytes
-        [13]: Compressed size 6152 bytes
-        [14]: Compressed size 3080 bytes
-        [15]: Compressed size 1544 bytes
-Compressing 33554432 bytes... (input file size: 0)
-        [01]: Compressed size 33554441 bytes
-        [02]: Compressed size 20132669 bytes
-        [03]: Compressed size 11184821 bytes
-        [04]: Compressed size 5921381 bytes
-        [05]: Compressed size 3050411 bytes
-        [06]: Compressed size 1548677 bytes
-        [07]: Compressed size 780344 bytes
-        [08]: Compressed size 391694 bytes
-        [09]: Compressed size 196235 bytes
-        [10]: Compressed size 98219 bytes
-        [11]: Compressed size 49139 bytes
-        [12]: Compressed size 24581 bytes
-        [13]: Compressed size 12296 bytes
-        [14]: Compressed size 6152 bytes
-        [15]: Compressed size 3080 bytes
-Compressing 67108864 bytes... (input file size: 0)
-        [01]: Compressed size 67108871 bytes
-        [02]: Compressed size 40265327 bytes
-        [03]: Compressed size 22369631 bytes
-        [04]: Compressed size 11842751 bytes
-        [05]: Compressed size 6100814 bytes
-        [06]: Compressed size 3097343 bytes
-        [07]: Compressed size 1560680 bytes
-        [08]: Compressed size 783380 bytes
-        [09]: Compressed size 392459 bytes
-        [10]: Compressed size 196427 bytes
-        [11]: Compressed size 98267 bytes
-        [12]: Compressed size 49151 bytes
-        [13]: Compressed size 24581 bytes
-        [14]: Compressed size 12296 bytes
-        [15]: Compressed size 6152 bytes
-Compressing 134217728 bytes... (input file size: 0)
-        [01]: Compressed size 134217737 bytes
-        [02]: Compressed size 80530646 bytes
-        [03]: Compressed size 44739251 bytes
-        [04]: Compressed size 23685491 bytes
-        [05]: Compressed size 12201620 bytes
-        [06]: Compressed size 6194675 bytes
-        [07]: Compressed size 3121352 bytes
-        [08]: Compressed size 1566752 bytes
-        [09]: Compressed size 784907 bytes
-        [10]: Compressed size 392843 bytes
-        [11]: Compressed size 196523 bytes
-        [12]: Compressed size 98291 bytes
-        [13]: Compressed size 49157 bytes
-        [14]: Compressed size 24584 bytes
-        [15]: Compressed size 12296 bytes
-Compressing 268435456 bytes... (input file size: 0)
-        [01]: Compressed size 268435463 bytes
-        [02]: Compressed size 161061281 bytes
-        [03]: Compressed size 89478494 bytes
-        [04]: Compressed size 47370971 bytes
-        [05]: Compressed size 24403232 bytes
-        [06]: Compressed size 12389339 bytes
-        [07]: Compressed size 6242693 bytes
-        [08]: Compressed size 3133496 bytes
-        [09]: Compressed size 1569806 bytes
-        [10]: Compressed size 785675 bytes
-        [11]: Compressed size 393035 bytes
-        [12]: Compressed size 196571 bytes
-        [13]: Compressed size 98303 bytes
-        [14]: Compressed size 49157 bytes
-        [15]: Compressed size 24584 bytes
-Compressing 536870912 bytes... (input file size: 0)
-        [01]: Compressed size 536870921 bytes
-        [02]: Compressed size 322122557 bytes
-        [03]: Compressed size 178956980 bytes
-        [04]: Compressed size 94741934 bytes
-        [05]: Compressed size 48806456 bytes
-        [06]: Compressed size 24778667 bytes
-        [07]: Compressed size 12485381 bytes
-        [08]: Compressed size 6266984 bytes
-        [09]: Compressed size 3139604 bytes
-        [10]: Compressed size 1571339 bytes
-        [11]: Compressed size 786059 bytes
-        [12]: Compressed size 393131 bytes
-        [13]: Compressed size 196595 bytes
-        [14]: Compressed size 98309 bytes
-        [15]: Compressed size 49160 bytes
-Compressing 1073741824 bytes... (input file size: 0)
-        [01]: Compressed size 1073741831 bytes
-        [02]: Compressed size 644245103 bytes
-        [03]: Compressed size 357913949 bytes
-        [04]: Compressed size 189483860 bytes
-        [05]: Compressed size 97612901 bytes
-        [06]: Compressed size 49557323 bytes
-        [07]: Compressed size 24970751 bytes
-        [08]: Compressed size 12533960 bytes
-        [09]: Compressed size 6279200 bytes
-        [10]: Compressed size 3142667 bytes
-        [11]: Compressed size 1572107 bytes
-        [12]: Compressed size 786251 bytes
-        [13]: Compressed size 393179 bytes
-        [14]: Compressed size 196607 bytes
-        [15]: Compressed size 98309 bytes
+Compressing 2 bytes... (load time: 668 ns)
+        [01]: Compressed to 11 B (385 ns)
+        [02]: Compressed to 11 B (79 ns)
+        [03]: Compressed to 11 B (56 ns)
+        [04]: Compressed to 11 B (39 ns)
+        [05]: Compressed to 11 B (45 ns)
+        [06]: Compressed to 11 B (26 ns)
+        [07]: Compressed to 11 B (26 ns)
+        [08]: Compressed to 11 B (25 ns)
+        [09]: Compressed to 11 B (29 ns)
+        [10]: Compressed to 11 B (30 ns)
+        [11]: Compressed to 11 B (26 ns)
+        [12]: Compressed to 11 B (29 ns)
+        [13]: Compressed to 11 B (30 ns)
+        [14]: Compressed to 11 B (29 ns)
+        [15]: Compressed to 11 B (45 ns)
+Compressing 4 bytes... (load time: 606 ns)
+        [01]: Compressed to 11 B (189 ns)
+        [02]: Compressed to 11 B (72 ns)
+        [03]: Compressed to 11 B (26 ns)
+        [04]: Compressed to 11 B (25 ns)
+        [05]: Compressed to 11 B (25 ns)
+        [06]: Compressed to 11 B (25 ns)
+        [07]: Compressed to 11 B (25 ns)
+        [08]: Compressed to 11 B (26 ns)
+        [09]: Compressed to 11 B (27 ns)
+        [10]: Compressed to 11 B (27 ns)
+        [11]: Compressed to 11 B (25 ns)
+        [12]: Compressed to 11 B (26 ns)
+        [13]: Compressed to 11 B (26 ns)
+        [14]: Compressed to 11 B (26 ns)
+        [15]: Compressed to 11 B (45 ns)
+Compressing 9 bytes... (load time: 665 ns)
+        [01]: Compressed to 17 B (227 ns)
+        [02]: Compressed to 14 B (168 ns)
+        [03]: Compressed to 11 B (50 ns)
+        [04]: Compressed to 11 B (50 ns)
+        [05]: Compressed to 11 B (25 ns)
+        [06]: Compressed to 11 B (27 ns)
+        [07]: Compressed to 11 B (28 ns)
+        [08]: Compressed to 11 B (27 ns)
+        [09]: Compressed to 11 B (27 ns)
+        [10]: Compressed to 11 B (25 ns)
+        [11]: Compressed to 11 B (25 ns)
+        [12]: Compressed to 11 B (27 ns)
+        [13]: Compressed to 11 B (26 ns)
+        [14]: Compressed to 11 B (28 ns)
+        [15]: Compressed to 11 B (43 ns)
+Compressing 17 bytes... (load time: 648 ns)
+        [01]: Compressed to 26 B (310 ns)
+        [02]: Compressed to 20 B (185 ns)
+        [03]: Compressed to 14 B (202 ns)
+        [04]: Compressed to 11 B (54 ns)
+        [05]: Compressed to 11 B (49 ns)
+        [06]: Compressed to 11 B (34 ns)
+        [07]: Compressed to 11 B (33 ns)
+        [08]: Compressed to 11 B (32 ns)
+        [09]: Compressed to 11 B (32 ns)
+        [10]: Compressed to 11 B (32 ns)
+        [11]: Compressed to 11 B (33 ns)
+        [12]: Compressed to 11 B (32 ns)
+        [13]: Compressed to 11 B (32 ns)
+        [14]: Compressed to 11 B (31 ns)
+        [15]: Compressed to 11 B (45 ns)
+Compressing 37 bytes... (load time: 814 ns)
+        [01]: Compressed to 44 B (315 ns)
+        [02]: Compressed to 32 B (325 ns)
+        [03]: Compressed to 20 B (117 ns)
+        [04]: Compressed to 17 B (295 ns)
+        [05]: Compressed to 14 B (299 ns)
+        [06]: Compressed to 11 B (80 ns)
+        [07]: Compressed to 11 B (54 ns)
+        [08]: Compressed to 11 B (50 ns)
+        [09]: Compressed to 11 B (50 ns)
+        [10]: Compressed to 11 B (51 ns)
+        [11]: Compressed to 11 B (53 ns)
+        [12]: Compressed to 11 B (64 ns)
+        [13]: Compressed to 11 B (54 ns)
+        [14]: Compressed to 11 B (53 ns)
+        [15]: Compressed to 11 B (63 ns)
+Compressing 127 bytes... (load time: 803 ns)
+        [01]: Compressed to 134 B (547 ns)
+        [02]: Compressed to 86 B (484 ns)
+        [03]: Compressed to 50 B (282 ns)
+        [04]: Compressed to 32 B (1009 ns)
+        [05]: Compressed to 20 B (1724 ns)
+        [06]: Compressed to 14 B (2547 ns)
+        [07]: Compressed to 11 B (118 ns)
+        [08]: Compressed to 11 B (196 ns)
+        [09]: Compressed to 11 B (319 ns)
+        [10]: Compressed to 11 B (174 ns)
+        [11]: Compressed to 11 B (100 ns)
+        [12]: Compressed to 11 B (183 ns)
+        [13]: Compressed to 11 B (102 ns)
+        [14]: Compressed to 11 B (164 ns)
+        [15]: Compressed to 11 B (101 ns)
+Compressing 250 bytes... (load time: 873 ns)
+        [01]: Compressed to 257 B (551 ns)
+        [02]: Compressed to 158 B (325 ns)
+        [03]: Compressed to 92 B (1120 ns)
+        [04]: Compressed to 53 B (1746 ns)
+        [05]: Compressed to 32 B (2371 ns)
+        [06]: Compressed to 20 B (6908 ns)
+        [07]: Compressed to 14 B (8594 ns)
+        [08]: Compressed to 11 B (175 ns)
+        [09]: Compressed to 11 B (154 ns)
+        [10]: Compressed to 11 B (154 ns)
+        [11]: Compressed to 11 B (154 ns)
+        [12]: Compressed to 11 B (152 ns)
+        [13]: Compressed to 11 B (164 ns)
+        [14]: Compressed to 11 B (152 ns)
+        [15]: Compressed to 11 B (169 ns)
+Compressing 439 bytes... (load time: 870 ns)
+        [01]: Compressed to 446 B (1045 ns)
+        [02]: Compressed to 272 B (1507 ns)
+        [03]: Compressed to 155 B (1926 ns)
+        [04]: Compressed to 86 B (4716 ns)
+        [05]: Compressed to 50 B (3582 ns)
+        [06]: Compressed to 29 B (13833 ns)
+        [07]: Compressed to 20 B (13412 ns)
+        [08]: Compressed to 14 B (48058 ns)
+        [09]: Compressed to 11 B (278 ns)
+        [10]: Compressed to 11 B (260 ns)
+        [11]: Compressed to 11 B (462 ns)
+        [12]: Compressed to 11 B (282 ns)
+        [13]: Compressed to 11 B (251 ns)
+        [14]: Compressed to 11 B (279 ns)
+        [15]: Compressed to 11 B (323 ns)
+Compressing 630 bytes... (load time: 777 ns)
+        [01]: Compressed to 638 B (976 ns)
+        [02]: Compressed to 386 B (657 ns)
+        [03]: Compressed to 218 B (531 ns)
+        [04]: Compressed to 119 B (646 ns)
+        [05]: Compressed to 68 B (1441 ns)
+        [06]: Compressed to 38 B (15938 ns)
+        [07]: Compressed to 23 B (30364 ns)
+        [08]: Compressed to 17 B (16265 ns)
+        [09]: Compressed to 14 B (8169 ns)
+        [10]: Compressed to 11 B (358 ns)
+        [11]: Compressed to 11 B (331 ns)
+        [12]: Compressed to 11 B (325 ns)
+        [13]: Compressed to 11 B (325 ns)
+        [14]: Compressed to 11 B (324 ns)
+        [15]: Compressed to 11 B (356 ns)
+Compressing 1314 bytes... (load time: 777 ns)
+        [01]: Compressed to 1322 B (2071 ns)
+        [02]: Compressed to 797 B (3853 ns)
+        [03]: Compressed to 446 B (1266 ns)
+        [04]: Compressed to 242 B (5020 ns)
+        [05]: Compressed to 128 B (24682 ns)
+        [06]: Compressed to 71 B (9327 ns)
+        [07]: Compressed to 41 B (9659 ns)
+        [08]: Compressed to 26 B (4291 ns)
+        [09]: Compressed to 17 B (18776 ns)
+        [10]: Compressed to 14 B (9733 ns)
+        [11]: Compressed to 11 B (689 ns)
+        [12]: Compressed to 11 B (677 ns)
+        [13]: Compressed to 11 B (662 ns)
+        [14]: Compressed to 11 B (660 ns)
+        [15]: Compressed to 11 B (679 ns)
+Compressing 3281 bytes... (load time: 1042 ns)
+        [01]: Compressed to 3290 B (8002 ns)
+        [02]: Compressed to 1976 B (3270 ns)
+        [03]: Compressed to 1103 B (10307 ns)
+        [04]: Compressed to 587 B (2088 ns)
+        [05]: Compressed to 308 B (17404 ns)
+        [06]: Compressed to 161 B (24782 ns)
+        [07]: Compressed to 86 B (19934 ns)
+        [08]: Compressed to 47 B (27491 ns)
+        [09]: Compressed to 29 B (14813 ns)
+        [10]: Compressed to 20 B (8276 ns)
+        [11]: Compressed to 14 B (19492 ns)
+        [12]: Compressed to 11 B (1623 ns)
+        [13]: Compressed to 11 B (1628 ns)
+        [14]: Compressed to 11 B (1600 ns)
+        [15]: Compressed to 11 B (1613 ns)
+Compressing 8190 bytes... (load time: 956 ns)
+        [01]: Compressed to 8198 B (13832 ns)
+        [02]: Compressed to 4922 B (10271 ns)
+        [03]: Compressed to 2738 B (5930 ns)
+        [04]: Compressed to 1454 B (30510 ns)
+        [05]: Compressed to 755 B (11910 ns)
+        [06]: Compressed to 386 B (7193 ns)
+        [07]: Compressed to 200 B (24442 ns)
+        [08]: Compressed to 104 B (34412 ns)
+        [09]: Compressed to 56 B (35570 ns)
+        [10]: Compressed to 32 B (35559 ns)
+        [11]: Compressed to 20 B (34282 ns)
+        [12]: Compressed to 14 B (32211 ns)
+        [13]: Compressed to 11 B (4797 ns)
+        [14]: Compressed to 11 B (4905 ns)
+        [15]: Compressed to 11 B (4718 ns)
+Compressing 10792 bytes... (load time: 2050 ns)
+        [01]: Compressed to 10799 B (14425 ns)
+        [02]: Compressed to 6485 B (20769 ns)
+        [03]: Compressed to 3605 B (7842 ns)
+        [04]: Compressed to 1913 B (38691 ns)
+        [05]: Compressed to 989 B (7905 ns)
+        [06]: Compressed to 509 B (7501 ns)
+        [07]: Compressed to 260 B (29429 ns)
+        [08]: Compressed to 134 B (37941 ns)
+        [09]: Compressed to 74 B (6526 ns)
+        [10]: Compressed to 41 B (21732 ns)
+        [11]: Compressed to 26 B (13262 ns)
+        [12]: Compressed to 17 B (22734 ns)
+        [13]: Compressed to 14 B (12681 ns)
+        [14]: Compressed to 11 B (5199 ns)
+        [15]: Compressed to 11 B (5209 ns)
+Compressing 30171 bytes... (load time: 6997 ns)
+        [01]: Compressed to 30179 B (40247 ns)
+        [02]: Compressed to 18110 B (26851 ns)
+        [03]: Compressed to 10067 B (32692 ns)
+        [04]: Compressed to 5333 B (43232 ns)
+        [05]: Compressed to 2753 B (30572 ns)
+        [06]: Compressed to 1403 B (23519 ns)
+        [07]: Compressed to 710 B (47187 ns)
+        [08]: Compressed to 362 B (29509 ns)
+        [09]: Compressed to 185 B (40894 ns)
+        [10]: Compressed to 98 B (28370 ns)
+        [11]: Compressed to 53 B (36052 ns)
+        [12]: Compressed to 32 B (24592 ns)
+        [13]: Compressed to 20 B (30538 ns)
+        [14]: Compressed to 14 B (27631 ns)
+        [15]: Compressed to 11 B (14470 ns)
+Compressing 52554 bytes... (load time: 23357 ns)
+        [01]: Compressed to 52562 B (90894 ns)
+        [02]: Compressed to 31541 B (100763 ns)
+        [03]: Compressed to 17528 B (67926 ns)
+        [04]: Compressed to 9284 B (67171 ns)
+        [05]: Compressed to 4787 B (66240 ns)
+        [06]: Compressed to 2435 B (64152 ns)
+        [07]: Compressed to 1232 B (53482 ns)
+        [08]: Compressed to 623 B (52167 ns)
+        [09]: Compressed to 317 B (49325 ns)
+        [10]: Compressed to 164 B (39333 ns)
+        [11]: Compressed to 86 B (45115 ns)
+        [12]: Compressed to 47 B (49541 ns)
+        [13]: Compressed to 29 B (34984 ns)
+        [14]: Compressed to 20 B (28792 ns)
+        [15]: Compressed to 14 B (25360 ns)
+Compressing 74070 bytes... (load time: 14917 ns)
+        [01]: Compressed to 74078 B (107526 ns)
+        [02]: Compressed to 44450 B (70788 ns)
+        [03]: Compressed to 24698 B (74597 ns)
+        [04]: Compressed to 13079 B (67553 ns)
+        [05]: Compressed to 6743 B (94735 ns)
+        [06]: Compressed to 3428 B (80721 ns)
+        [07]: Compressed to 1733 B (49989 ns)
+        [08]: Compressed to 875 B (46423 ns)
+        [09]: Compressed to 443 B (49616 ns)
+        [10]: Compressed to 227 B (44468 ns)
+        [11]: Compressed to 119 B (40326 ns)
+        [12]: Compressed to 65 B (46732 ns)
+        [13]: Compressed to 38 B (36484 ns)
+        [14]: Compressed to 23 B (43610 ns)
+        [15]: Compressed to 17 B (35450 ns)
+Compressing 161142 bytes... (load time: 61829 ns)
+        [01]: Compressed to 161150 B (283595 ns)
+        [02]: Compressed to 96695 B (187850 ns)
+        [03]: Compressed to 53723 B (149898 ns)
+        [04]: Compressed to 28445 B (139566 ns)
+        [05]: Compressed to 14660 B (129512 ns)
+        [06]: Compressed to 7448 B (100330 ns)
+        [07]: Compressed to 3758 B (93138 ns)
+        [08]: Compressed to 1892 B (82757 ns)
+        [09]: Compressed to 953 B (83443 ns)
+        [10]: Compressed to 482 B (84843 ns)
+        [11]: Compressed to 245 B (97945 ns)
+        [12]: Compressed to 128 B (86117 ns)
+        [13]: Compressed to 68 B (92927 ns)
+        [14]: Compressed to 38 B (90369 ns)
+        [15]: Compressed to 23 B (77269 ns)
+Compressing 267347 bytes... (load time: 60185 ns)
+        [01]: Compressed to 267356 B (427715 ns)
+        [02]: Compressed to 160418 B (319429 ns)
+        [03]: Compressed to 89126 B (208832 ns)
+        [04]: Compressed to 47189 B (176748 ns)
+        [05]: Compressed to 24314 B (175204 ns)
+        [06]: Compressed to 12350 B (172825 ns)
+        [07]: Compressed to 6227 B (171312 ns)
+        [08]: Compressed to 3131 B (154454 ns)
+        [09]: Compressed to 1574 B (152332 ns)
+        [10]: Compressed to 791 B (164258 ns)
+        [11]: Compressed to 401 B (150893 ns)
+        [12]: Compressed to 206 B (178429 ns)
+        [13]: Compressed to 107 B (153612 ns)
+        [14]: Compressed to 59 B (157562 ns)
+        [15]: Compressed to 35 B (136310 ns)
+Compressing 534125 bytes... (load time: 117993 ns)
+        [01]: Compressed to 534134 B (795711 ns)
+        [02]: Compressed to 320483 B (518093 ns)
+        [03]: Compressed to 178052 B (390412 ns)
+        [04]: Compressed to 94268 B (420184 ns)
+        [05]: Compressed to 48566 B (436364 ns)
+        [06]: Compressed to 24662 B (344921 ns)
+        [07]: Compressed to 12431 B (313432 ns)
+        [08]: Compressed to 6245 B (285990 ns)
+        [09]: Compressed to 3134 B (275997 ns)
+        [10]: Compressed to 1574 B (263372 ns)
+        [11]: Compressed to 791 B (312013 ns)
+        [12]: Compressed to 401 B (266480 ns)
+        [13]: Compressed to 206 B (260463 ns)
+        [14]: Compressed to 107 B (264685 ns)
+        [15]: Compressed to 59 B (255276 ns)
+Compressing 1057336 bytes... (load time: 417215 ns)
+        [01]: Compressed to 1057343 B (1571362 ns)
+        [02]: Compressed to 634409 B (1040060 ns)
+        [03]: Compressed to 352454 B (797920 ns)
+        [04]: Compressed to 186599 B (648833 ns)
+        [05]: Compressed to 96131 B (840195 ns)
+        [06]: Compressed to 48809 B (686126 ns)
+        [07]: Compressed to 24599 B (610272 ns)
+        [08]: Compressed to 12353 B (589504 ns)
+        [09]: Compressed to 6194 B (528134 ns)
+        [10]: Compressed to 3104 B (531029 ns)
+        [11]: Compressed to 1559 B (503086 ns)
+        [12]: Compressed to 785 B (497369 ns)
+        [13]: Compressed to 398 B (509975 ns)
+        [14]: Compressed to 203 B (628122 ns)
+        [15]: Compressed to 107 B (517804 ns)
+Compressing 2119887 bytes... (load time: 466526 ns)
+        [01]: Compressed to 2119895 B (3149823 ns)
+        [02]: Compressed to 1271942 B (2111877 ns)
+        [03]: Compressed to 706637 B (1560774 ns)
+        [04]: Compressed to 374108 B (1298356 ns)
+        [05]: Compressed to 192725 B (1611704 ns)
+        [06]: Compressed to 97850 B (1433059 ns)
+        [07]: Compressed to 49310 B (1181292 ns)
+        [08]: Compressed to 24755 B (1116699 ns)
+        [09]: Compressed to 12407 B (1374154 ns)
+        [10]: Compressed to 6215 B (1256339 ns)
+        [11]: Compressed to 3113 B (1049840 ns)
+        [12]: Compressed to 1562 B (1111937 ns)
+        [13]: Compressed to 785 B (1066124 ns)
+        [14]: Compressed to 398 B (996036 ns)
+        [15]: Compressed to 203 B (1028085 ns)
+Compressing 4218000 bytes... (load time: 620821 ns)
+        [01]: Compressed to 4218008 B (6065104 ns)
+        [02]: Compressed to 2530808 B (3929213 ns)
+        [03]: Compressed to 1406009 B (3253549 ns)
+        [04]: Compressed to 744362 B (2717858 ns)
+        [05]: Compressed to 383465 B (2743647 ns)
+        [06]: Compressed to 194687 B (2632274 ns)
+        [07]: Compressed to 98102 B (2551374 ns)
+        [08]: Compressed to 49247 B (2177967 ns)
+        [09]: Compressed to 24677 B (2402903 ns)
+        [10]: Compressed to 12356 B (2093198 ns)
+        [11]: Compressed to 6185 B (2169674 ns)
+        [12]: Compressed to 3098 B (2027525 ns)
+        [13]: Compressed to 1553 B (2189001 ns)
+        [14]: Compressed to 782 B (2049322 ns)
+        [15]: Compressed to 395 B (2147469 ns)
+Compressing 8420108 bytes... (load time: 1166556 ns)
+        [01]: Compressed to 8420117 B (12520013 ns)
+        [02]: Compressed to 5052074 B (8451409 ns)
+        [03]: Compressed to 2806712 B (6270266 ns)
+        [04]: Compressed to 1485911 B (5444914 ns)
+        [05]: Compressed to 765473 B (4894141 ns)
+        [06]: Compressed to 388631 B (5503821 ns)
+        [07]: Compressed to 195827 B (4853619 ns)
+        [08]: Compressed to 98300 B (4392222 ns)
+        [09]: Compressed to 49250 B (4287774 ns)
+        [10]: Compressed to 24653 B (4287164 ns)
+        [11]: Compressed to 12338 B (4276370 ns)
+        [12]: Compressed to 6176 B (4354105 ns)
+        [13]: Compressed to 3092 B (4482965 ns)
+        [14]: Compressed to 1550 B (4241181 ns)
+        [15]: Compressed to 779 B (4459133 ns)
+Compressing 16792198 bytes... (load time: 4268388 ns)
+        [01]: Compressed to 16792205 B (24844631 ns)
+        [02]: Compressed to 10075328 B (16628174 ns)
+        [03]: Compressed to 5597408 B (12278085 ns)
+        [04]: Compressed to 2963339 B (10699057 ns)
+        [05]: Compressed to 1526573 B (10152220 ns)
+        [06]: Compressed to 775034 B (11231081 ns)
+        [07]: Compressed to 390527 B (9844482 ns)
+        [08]: Compressed to 196028 B (8960718 ns)
+        [09]: Compressed to 98210 B (9160327 ns)
+        [10]: Compressed to 49157 B (8629561 ns)
+        [11]: Compressed to 24596 B (8237928 ns)
+        [12]: Compressed to 12305 B (8429563 ns)
+        [13]: Compressed to 6158 B (8945768 ns)
+        [14]: Compressed to 3083 B (8622671 ns)
+        [15]: Compressed to 1547 B (8597957 ns)
+Compressing 33573512 bytes... (load time: 7266365 ns)
+        [01]: Compressed to 33573521 B (47913196 ns)
+        [02]: Compressed to 20144117 B (32611668 ns)
+        [03]: Compressed to 11191181 B (24340461 ns)
+        [04]: Compressed to 5924747 B (20353364 ns)
+        [05]: Compressed to 3052148 B (20367824 ns)
+        [06]: Compressed to 1549556 B (20793323 ns)
+        [07]: Compressed to 780788 B (19007932 ns)
+        [08]: Compressed to 391919 B (17494902 ns)
+        [09]: Compressed to 196346 B (17116053 ns)
+        [10]: Compressed to 98273 B (18640770 ns)
+        [11]: Compressed to 49166 B (16760605 ns)
+        [12]: Compressed to 24593 B (16678967 ns)
+        [13]: Compressed to 12302 B (16581912 ns)
+        [14]: Compressed to 6158 B (16561326 ns)
+        [15]: Compressed to 3083 B (16668361 ns)
+Compressing 67114618 bytes... (load time: 13046920 ns)
+        [01]: Compressed to 67114625 B (93344108 ns)
+        [02]: Compressed to 40268780 B (64759291 ns)
+        [03]: Compressed to 22371548 B (48627830 ns)
+        [04]: Compressed to 11843765 B (41671582 ns)
+        [05]: Compressed to 6101339 B (42891679 ns)
+        [06]: Compressed to 3097607 B (41436227 ns)
+        [07]: Compressed to 1560815 B (37355917 ns)
+        [08]: Compressed to 783449 B (35230121 ns)
+        [09]: Compressed to 392492 B (34610405 ns)
+        [10]: Compressed to 196442 B (33758716 ns)
+        [11]: Compressed to 98273 B (34054979 ns)
+        [12]: Compressed to 49154 B (32828046 ns)
+        [13]: Compressed to 24584 B (32839257 ns)
+        [14]: Compressed to 12299 B (32822389 ns)
+        [15]: Compressed to 6155 B (33627338 ns)
+Compressing 134232883 bytes... (load time: 23382016 ns)
+        [01]: Compressed to 134232890 B (182104395 ns)
+        [02]: Compressed to 80539739 B (126980149 ns)
+        [03]: Compressed to 44744303 B (96911552 ns)
+        [04]: Compressed to 23688164 B (81717489 ns)
+        [05]: Compressed to 12203000 B (79722625 ns)
+        [06]: Compressed to 6195374 B (82110332 ns)
+        [07]: Compressed to 3121703 B (74404073 ns)
+        [08]: Compressed to 1566929 B (69673510 ns)
+        [09]: Compressed to 784997 B (68530011 ns)
+        [10]: Compressed to 392885 B (69888856 ns)
+        [11]: Compressed to 196544 B (66258395 ns)
+        [12]: Compressed to 98300 B (67474353 ns)
+        [13]: Compressed to 49160 B (66625769 ns)
+        [14]: Compressed to 24587 B (69265190 ns)
+        [15]: Compressed to 12299 B (67231511 ns)
+Compressing 268455079 bytes... (load time: 44001252 ns)
+        [01]: Compressed to 268455086 B (360524322 ns)
+        [02]: Compressed to 161073056 B (258629223 ns)
+        [03]: Compressed to 89485034 B (190878122 ns)
+        [04]: Compressed to 47374436 B (160897795 ns)
+        [05]: Compressed to 24405017 B (153106883 ns)
+        [06]: Compressed to 12390245 B (162542891 ns)
+        [07]: Compressed to 6243152 B (147618634 ns)
+        [08]: Compressed to 3133727 B (135727270 ns)
+        [09]: Compressed to 1569923 B (131051345 ns)
+        [10]: Compressed to 785732 B (131323990 ns)
+        [11]: Compressed to 393062 B (129284498 ns)
+        [12]: Compressed to 196583 B (128979926 ns)
+        [13]: Compressed to 98309 B (130599428 ns)
+        [14]: Compressed to 49163 B (129261582 ns)
+        [15]: Compressed to 24587 B (129921211 ns)
+Compressing 536898077 bytes... (load time: 90121326 ns)
+        [01]: Compressed to 536898086 B (726719351 ns)
+        [02]: Compressed to 322138856 B (508410906 ns)
+        [03]: Compressed to 178966034 B (381415306 ns)
+        [04]: Compressed to 94746728 B (319744986 ns)
+        [05]: Compressed to 48808925 B (304457316 ns)
+        [06]: Compressed to 24779921 B (327318812 ns)
+        [07]: Compressed to 12486011 B (291172195 ns)
+        [08]: Compressed to 6267302 B (269948971 ns)
+        [09]: Compressed to 3139763 B (261648291 ns)
+        [10]: Compressed to 1571420 B (258942765 ns)
+        [11]: Compressed to 786098 B (258733838 ns)
+        [12]: Compressed to 393149 B (266095070 ns)
+        [13]: Compressed to 196604 B (268007488 ns)
+        [14]: Compressed to 98312 B (258536448 ns)
+        [15]: Compressed to 49163 B (259205474 ns)
+Compressing 1073767820 bytes... (load time: 175204678 ns)
+        [01]: Compressed to 1073767829 B (1451918975 ns)
+        [02]: Compressed to 644260700 B (1009911266 ns)
+        [03]: Compressed to 357922616 B (753377932 ns)
+        [04]: Compressed to 189488447 B (634307110 ns)
+        [05]: Compressed to 97615265 B (596667790 ns)
+        [06]: Compressed to 49558523 B (651154674 ns)
+        [07]: Compressed to 24971354 B (583907052 ns)
+        [08]: Compressed to 12534263 B (542005572 ns)
+        [09]: Compressed to 6279353 B (523162944 ns)
+        [10]: Compressed to 3142745 B (521748195 ns)
+        [11]: Compressed to 1572143 B (514262600 ns)
+        [12]: Compressed to 786269 B (598983179 ns)
+        [13]: Compressed to 393188 B (520152780 ns)
+        [14]: Compressed to 196610 B (517224000 ns)
+        [15]: Compressed to 98312 B (517272929 ns)
 ```
