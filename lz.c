@@ -10,22 +10,44 @@
 #define pr_err(...)
 #endif /* DEBUG_MSG */
 
-// the output data struct: 4B raw size + 1B wid + K*(2B dist|len + 1B symbol)
+#pragma pack(push, 1) // there is a clang warn here, seems clangd bug
+typedef struct Header {
+  uint32_t szIn;
+  uint8_t width;
+} Header_t;
+#pragma pack(pop)
+_Static_assert(5 == sizeof(Header_t), "Wrong alignment");
+
+#pragma pack(push, 1)
+typedef struct Body {
+  struct {
+    uint8_t lo;
+    uint8_t hi;
+  } distlen; // distance and length to match, lower @width bits it len
+  uint8_t symbol;
+} Body_t;
+#pragma pack(pop)
+_Static_assert(3 == sizeof(Body_t), "Wrong alignment");
+
+typedef struct EncodedData {
+  Header_t header;
+  Body_t body[0];
+} EncodedData_t;
+
 uint32_t encode(const uint8_t *in, uint32_t szIn, uint8_t *out, uint8_t wid) {
+  EncodedData_t *outdat = (EncodedData_t *)out;
+
   const uint16_t maxDistMatch = 1 << ((8 * sizeof(uint16_t)) - wid);
   const uint16_t maxLenMatch = 1 << (wid);
 
-  uint16_t dist_len;
-  uint32_t outSize, ofsSym;
-
   // put raw data size and @len width in the output header
-  *((uint32_t *)out) = szIn;
-  *(out + 4) = wid;
+  outdat->header.szIn = szIn;
+  outdat->header.width = wid;
 
   // real compressed data begin
-  outSize = 5;
-  for (uint32_t ofsIn = 0; ofsIn < szIn; ++ofsIn) {
-    uint16_t distMatch = 0, lenMatch = 0;
+  uint32_t ofsSym, ofsOut = 0;
+  for (uint32_t ofsIn = 0; ofsIn < szIn; ++ofsIn, ++ofsOut) {
+    uint16_t distMatch = 0, lenMatch = 0, dist_len;
 
     // check search buffer
     for (uint16_t dm = 1, lm; (dm < maxDistMatch) && (dm <= ofsIn); ++dm) {
@@ -59,37 +81,36 @@ uint32_t encode(const uint8_t *in, uint32_t szIn, uint8_t *out, uint8_t wid) {
       ofsSym = ofsIn;
     }
 
-    // write tuple(dist,len,symbol)
-    *(out + outSize) = dist_len & 0xFF;
-    *(out + outSize + 1) = (dist_len >> 8) & 0xFF;
-    *(out + outSize + 2) = *(in + ofsSym);
-    outSize += 3;
+    // write data body
+    outdat->body[ofsOut].distlen.lo = dist_len & 0xFF;
+    outdat->body[ofsOut].distlen.hi = (dist_len >> 8) & 0xFF;
+    outdat->body[ofsOut].symbol = *(in + ofsSym);
   }
-  return outSize;
+  return sizeof(Header_t) + sizeof(Body_t) * ofsOut;
 }
 
 uint32_t decode(const uint8_t *in, uint8_t *out) {
-  uint8_t wid;
-  uint16_t dist_len, lenMatch, distMatch, dist_len_mask;
-  uint32_t ofsIn, ofsOut, ofsMatch, szOut;
+  const EncodedData_t *indat = (EncodedData_t *)in;
 
-  szOut = *((uint32_t *)in);
-  wid = *(in + 4);
-  ofsIn = 5;
+  uint8_t wid = indat->header.width;
+  uint32_t szOut = indat->header.szIn;
+  uint16_t dist_len_mask = (1 << wid) - 1;
 
-  dist_len_mask = (1 << wid) - 1;
+  // start decoding body
+  uint32_t ofsOut = 0;
+  for (uint32_t ofsIn = 0; ofsOut < szOut; ++ofsIn, ++ofsOut) {
+    uint16_t lenMatch, distMatch, dist_len;
 
-  for (ofsOut = 0; ofsOut < szOut; ++ofsOut) {
-    *((uint8_t *)&dist_len) = *(in + ofsIn);
-    *((uint8_t *)&dist_len + 1) = *(in + ofsIn + 1);
+    *((uint8_t *)&dist_len) = indat->body[ofsIn].distlen.lo;
+    *((uint8_t *)&dist_len + 1) = indat->body[ofsIn].distlen.hi;
 
-    ofsIn += 2;
+    // copy repeated data from window
     distMatch = dist_len >> wid;
     lenMatch = distMatch ? ((dist_len & dist_len_mask) + 1) : 0;
     if (distMatch)
-      for (ofsMatch = ofsOut - distMatch; lenMatch > 0; --lenMatch)
+      for (uint32_t ofsMatch = ofsOut - distMatch; lenMatch > 0; --lenMatch)
         out[ofsOut++] = out[ofsMatch++];
-    *(out + ofsOut) = *(in + ofsIn++);
+    *(out + ofsOut) = indat->body[ofsIn].symbol;
   }
 
   return ofsOut;
