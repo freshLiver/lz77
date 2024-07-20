@@ -24,7 +24,9 @@ $(OBJS): %.o: %.c
 
 
 test: $(TARGET)
-	@for sz in {1..30}; do ./$(TARGET) "$(TEST_FILE)" "$$((1 << $$sz))" || exit $?; done
+	@for sz in {1..30}; \
+		do ./$(TARGET) "$(TEST_FILE)" "$$(((1 << $$sz) + ($$RANDOM % (1 << $$sz))))" || exit $?; \
+	done
 
 clean:
 	$(RM) $(OBJS) $(TARGET)
