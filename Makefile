@@ -5,7 +5,7 @@ LD	:= $(CC)
 
 SANS	:= -fsanitize=undefined,leak,address,integer,implicit-conversion
 
-CFLAGS	:= -std=c99 -g -O3 -Wall -Wextra -Werror
+CFLAGS	:= -std=c11 -g -O3 -Wall -Wextra -Werror
 LDFLAGS	:= $(SANS)
 
 SRCS	:= lz.c test.c

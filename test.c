@@ -1,3 +1,5 @@
+#define _GNU_SOURCE
+
 #include <errno.h>
 #include <libgen.h>
 #include <stdio.h>
@@ -7,6 +9,11 @@
 #include <sys/param.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
+#include <assert.h>
+#include <time.h>
+
+#define TIMESPEC2NS(ts) (((ts).tv_sec * 1000000000ULL) + (ts).tv_nsec)
 
 #include "lz.h"
 
@@ -71,16 +78,29 @@ int main(int argc, char *argv[]) {
     perror("Failed to open input file");
     goto free_dec_buf;
   }
+
+  size_t nsLoadTime;
+  struct timespec tsRawBeg, tsRawEnd;
+  assert(0 == clock_gettime(CLOCK_REALTIME, &tsRawBeg));
   if (szRaw != read(fd, datRaw, szRaw)) {
     perror("Failed to read data from the input file");
     goto close_in;
   }
+  assert(0 == clock_gettime(CLOCK_REALTIME, &tsRawEnd));
+  nsLoadTime = TIMESPEC2NS(tsRawEnd) - TIMESPEC2NS(tsRawBeg);
 
-  pr_info("Compressing %ld bytes... (input file size: %ld)", szRaw, s.st_size);
+  pr_info("Compressing %ld bytes... (load time: %lu ns)", szRaw, nsLoadTime);
   for (uint8_t bits = 1; bits < 16; ++bits) {
+    struct timespec tsBeg, tsEnd;
+    size_t time_ns;
+
+    assert(0 == clock_gettime(CLOCK_REALTIME, &tsBeg));
     ssize_t szEnc = encode(datRaw, szRaw, datEnc, bits);
+    assert(0 == clock_gettime(CLOCK_REALTIME, &tsEnd));
+    time_ns = TIMESPEC2NS(tsEnd) - TIMESPEC2NS(tsBeg);
+
     ssize_t szDec = decode(datEnc, datDec);
-    pr_info("\t[%02hu]: Compressed size %ld bytes", bits, szEnc);
+    pr_info("\t[%02hu]: Compressed to %ld B (%lu ns)", bits, szEnc, time_ns);
 
     // verify
     if ((szDec != szRaw) || memcmp(datRaw, datDec, szRaw)) {
