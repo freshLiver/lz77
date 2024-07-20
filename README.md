@@ -2,7 +2,11 @@
 
 ## Introduce
 
-Taken from [andyherbert/lz1](https://github.com/andyherbert/lz1)
+The original code is taken from [andyherbert/lz1](https://github.com/andyherbert/lz1), but apply some changes:
+
+- Renaming
+- Border checks during encoding
+- Alignment problems
 
 ## Limitations
 
