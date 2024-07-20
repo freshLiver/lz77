@@ -1,15 +1,5 @@
 #include "lz.h"
 
-#ifdef DEBUG_MSG
-#include <stdio.h>
-
-#define pr_info(fmt, ...) fprintf(stdout, fmt "\n", ##__VA_ARGS__)
-#define pr_err(fmt, ...) fprintf(stderr, fmt "\n", ##__VA_ARGS__)
-#else
-#define pr_info(...)
-#define pr_err(...)
-#endif /* DEBUG_MSG */
-
 #pragma pack(push, 1) // there is a clang warn here, seems clangd bug
 typedef struct Header {
   uint32_t szIn;
